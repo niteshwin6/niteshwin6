@@ -2,8 +2,8 @@ name: Update Profile README
 
 on:
   schedule:
-    - cron: "*/5 * * * *"  # Run every 5 minutes (GitHub blocks every-minute cron jobs)
-  workflow_dispatch:       # Manual trigger from GitHub UI
+    - cron: "*/5 * * * *"  # Run every 5 minutes
+  workflow_dispatch:       # Allow manual trigger
 
 jobs:
   update-readme:
@@ -23,7 +23,7 @@ jobs:
 
       - name: Run update script
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
         run: python update_readme.py
 
       - name: Commit and push if changed
